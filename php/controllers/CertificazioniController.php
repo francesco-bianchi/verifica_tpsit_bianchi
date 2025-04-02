@@ -11,9 +11,13 @@ class CertificazioniController
     
     $query = "SELECT * FROM certificazioni WHERE alunno_id = '$id'";
     
-    if(isset($_GET["search"])){
-      $search = $parametri['search'];
-      $query .= " AND (titolo LIKE '%$search%' OR votazione = $search)";
+    if(isset($_GET["titolo"]) || isset($_GET["votazione"])){
+      $titolo = $parametri['titolo'];
+      $query .= " AND titolo LIKE '%$titolo%'";
+    }
+    if(isset($_GET["votazione"])){
+      $votazione = $parametri['votazione'];
+      $query .= " AND votazione = $votazione";
     }
     if(isset($_GET["sortCol"])){
       $sortCol = $parametri["sortCol"];

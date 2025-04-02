@@ -67,7 +67,7 @@ class CertificazioniController
     $mysqli_connection = new MySQLi('my_mariadb', 'root', 'ciccio', 'scuola');
     $query_inserimento = "INSERT INTO certificazioni(alunno_id, titolo, votazione, ente) VALUES('$args[id]'";
 
-    if(isset($body["titolo"]) && isset($body["votazione"]) && isset($body["ente"])){
+    if(isset($body["titolo"]) && isset($body["votazione"]) && isset($body["ente"]) && ($body["votazione"]>0 && $body["votazione"]<100)){
       $query_inserimento .= ", '$body[titolo]', '$body[votazione]', '$body[ente]');";
       $result = $mysqli_connection->query($query_inserimento);
 
